@@ -8,7 +8,9 @@ class App extends Component {
     return (
       <div className='App'>
         <Router>
-          <h3>Initializing App and Installing all required packages</h3>
+			<Route exact path="/">
+          		<h3>Initializing App and Installing all required packages</h3>
+			</Route>
         </Router>
       </div>
     );
