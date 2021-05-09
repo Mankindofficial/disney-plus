@@ -14,7 +14,6 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		handleMoviesIn: () => {
 			dispatch(setMovies(movieCategory))
-			console.warn("in")
 		}
 	}
 }
@@ -32,16 +31,12 @@ class Home extends Component {
 			switch(movie.type) {
 				case 'recommend':
 					return recommends.push(movie)
-					break;
 				case 'new':
 					return newDisney.push(movie)
-					break;
 				case 'original':
 					return originals.push(movie)
-					break;
 				case 'trending':
 					return trending.push(movie)
-					break;
 				default:
 					return movie
 			} 
