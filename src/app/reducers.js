@@ -1,7 +1,7 @@
 import { GET_USER, GET_MOVIES, GET_MOVIE_DETAIL } from './constants'
 
 const initialState = {
-	user: {}
+	user: null
 }
 
 const updateUser = (state=initialState, action={}) => {
