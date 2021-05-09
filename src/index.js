@@ -8,11 +8,12 @@ import thunk from 'redux-thunk'
 import { persistStore, persistReducer } from 'redux-persist'
 import { PersistGate } from 'redux-persist/integration/react'
 import storage from 'redux-persist/lib/storage'
-import { updateUser, getMovies } from './app/reducers'
+import { updateUser, getMovies, getMovieDetail } from './app/reducers'
 
 const rootReducer = combineReducers({
   user: updateUser,
-  movies: getMovies
+  movies: getMovies,
+  movieDetail: getMovieDetail
 });
  
 const persistConfig = {

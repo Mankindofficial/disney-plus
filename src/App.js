@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Login from './components/Login'
+import Header from './components/Header'
+import Home from './components/Home'
+import MovieDetail from './components/MovieDetail'
 import './App.css'
 
 class App extends Component {
@@ -8,9 +12,18 @@ class App extends Component {
     return (
       <div className='App'>
         <Router>
-			<Route exact path="/">
-          		<h3>Initializing App and Installing all required packages</h3>
-			</Route>
+          <Header />
+        	<Switch>
+  	  			<Route exact path="/">
+  	  				<Login />
+  	  			</Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/detail/:id">
+              <MovieDetail />
+            </Route>
+        	</Switch>
         </Router>
       </div>
     );
