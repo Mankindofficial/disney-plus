@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux'
-import { auth, provider } from '../firebase'
+import db, { auth, provider } from '../firebase'
 import { setUser } from '../app/actions'
 
 
@@ -17,7 +17,14 @@ const mapDispatchToProps = (dispatch) => {
 		handleAuthIn: () => {
 			auth.signInWithPopup(provider)
 			.then(result => {
+				db.collection('user').add({
+					displayName: result.user.displayName,
+					email: result.user.email,
+					emailVerified: result.user.emailVerified,
+					photoURL: result.user.photoURL,
+				}).catch(alert)
 				dispatch(setUser(result.user))
+				alert("Sign in successful ☺")
 			})
 			.catch(alert)
 		},
@@ -25,10 +32,13 @@ const mapDispatchToProps = (dispatch) => {
 			auth.signOut()
 			.then(() => {
 				dispatch(setUser(null))
+				alert("You have been signed out ☹")
 			})
+			.catch(alert)
 		}
 	}
 }
+
 
 class Header extends Component {
 
@@ -47,23 +57,23 @@ class Header extends Component {
 								<img src="/images/home-icon.svg" alt="HOME" />
 								<span>HOME</span>
 							</a>
-							<a href="/search">
+							<a className="rem-sm" href="/search">
 								<img src="/images/search-icon.svg" alt="search" />
 								<span>SEARCH</span>
 							</a>
-							<a href="/watchlist">
+							<a className="rem-sm" href="/watchlist">
 								<img src="/images/watchlist-icon.svg" alt="watchlist" />
 								<span>WATCHLIST</span>
 							</a>
-							<a href="/original">
+							<a className="rem-sm" href="/original">
 								<img src="/images/original-icon.svg" alt="original" />
 								<span>ORIGINAL</span>
 							</a>
-							<a href="/movie">
+							<a className="rem-sm" href="/movie">
 								<img src="/images/movie-icon.svg" alt="movie" />
 								<span>MOVIE</span>
 							</a>
-							<a href="/series">
+							<a className="rem-sm" href="/series">
 								<img src="/images/series-icon.svg" alt="series" />
 								<span>SERIES</span>
 							</a>
@@ -155,7 +165,9 @@ const NavMenu =  styled.div`
 	}
 
   @media (max-width: 768px) {
-    display: none;
+  	.rem-sm {
+    	display: none;
+  	}
   }
 `
 
@@ -169,6 +181,7 @@ const Login = styled.a`
 	text-transform: uppercase;
 	border: 1px solid #f9f9f9;
 	transition: all .2s;
+	cursor: pointer;
 
 	&:hover {
 		font-weight: bold;
