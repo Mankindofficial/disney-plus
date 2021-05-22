@@ -27,6 +27,7 @@ let { recommends, originals, newDisney, trending } = movieCategory;
 class Home extends Component {
 
 	componentDidMount() {
+		
 		movies.map((movie) => {
 			switch(movie.type) {
 				case 'recommend':
@@ -43,6 +44,13 @@ class Home extends Component {
 		})
 
 		this.props.handleMoviesIn();
+	}
+
+	componentWillUnmount() {
+		recommends = []
+		newDisney = []
+		originals = []
+		trending = []
 	}
 
 	render() {

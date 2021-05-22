@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
 import Login from './components/Login'
 import Header from './components/Header'
 import Home from './components/Home'
 import MovieDetail from './components/MovieDetail'
 import './App.css'
+
+const mapStateToProps = state => {
+  return {
+    user: state.user.user
+  }
+}
 
 class App extends Component {
 
@@ -15,13 +22,13 @@ class App extends Component {
           <Header />
         	<Switch>
   	  			<Route exact path="/">
-  	  				<Login />
+  	  				{this.props.user ? <Redirect to="/home" /> : <Login />}
   	  			</Route>
             <Route path="/home">
-              <Home />
+              {this.props.user ? <Home /> : <Redirect to="/" />}
             </Route>
             <Route path="/detail/:id">
-              <MovieDetail />
+              {this.props.user ? <MovieDetail /> : <Redirect to="/" />}
             </Route>
         	</Switch>
         </Router>
@@ -30,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapStateToProps, null)(App);

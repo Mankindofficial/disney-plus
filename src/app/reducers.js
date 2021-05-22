@@ -44,7 +44,6 @@ let movieDetailState = {
 const getMovieDetail = (state=movieDetailState, action={}) => {
 	switch(action.type) {
 		case GET_MOVIE_DETAIL:
-			console.log(action.payload)
 			return {
 				...state, 
 				details: action.payload

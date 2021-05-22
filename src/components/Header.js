@@ -43,12 +43,12 @@ const mapDispatchToProps = (dispatch) => {
 class Header extends Component {
 
 	render() {
+
 		return(
 			<Nav>
 				<Link to="/">
 					<Logo src="/images/logo.svg" alt="disney+"/>
 				</Link>
-
 				{ this.props.user
 					?
 					<>
