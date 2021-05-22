@@ -5,14 +5,20 @@ Disney+ CLONE using React, Firebase, Redux, and Styled Components... 👇
 
 ## Technologies used
 ⏩ React
+
 ⏩ Redux
+
 ⏩ Styled Components
+
 ⏩ Firebase
 
 ## Features
 👉 A fully functional Disney+ App 💻
+
 👉 Authenticated SignIn/SignUp with Firebase 🔑
+
 👉 100% Mobile responsive 📱 ️
+
 👉 State Mangement fully handled by Redux
 
 ## Live Demo
